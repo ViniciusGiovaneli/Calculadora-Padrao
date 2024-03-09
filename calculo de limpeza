@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main() {
+    float largura, comprimento, area, tempo_total_limpeza;
+
+    // Solicita as dimensões da sala
+    printf("Digite a largura da sala em metros: ");
+    scanf("%f", &largura);
+
+    printf("Digite o comprimento da sala em metros: ");
+    scanf("%f", &comprimento);
+
+
+    // Calcula a área da sala
+    area = largura * comprimento;
+
+    // Calcula o tempo total de limpeza
+    tempo_total_limpeza = area / 5 ;
+
+    // Exibe a área da sala
+    printf("A area da sala e: %.2f metros quadrados\n", area);
+
+    // Exibe o tempo total de limpeza
+    printf("O tempo total para limpeza do comodo e: %.2f minutos\n", tempo_total_limpeza);
+
+    return 0;
+}
+
