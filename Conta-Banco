@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+//Aqui, criamos uma estrutura Conta para representar as contas bancárias e implementamos funções para as operações básicas.
+
+typedef struct {
+    double saldo;
+} Conta;
+
+// Função para inicializar a conta
+void inicializarConta(Conta *conta, double saldoInicial) {
+    conta->saldo = saldoInicial;
+}
+
+// Função para depositar dinheiro na conta
+void depositar(Conta *conta, double valor) {
+    conta->saldo += valor;
+}
+
+// Função para verificar saldo antes de saque
+bool verificarSaldo(Conta *conta, double valor) {
+    return conta->saldo >= valor;
+}
+
+// Função para realizar saque
+void sacar(Conta *conta, double valor) {
+    if (verificarSaldo(conta, valor)) {
+        conta->saldo -= valor;
+        printf("Saque realizado com sucesso.\n");
+    } else {
+        printf("Saldo insuficiente.\n");
+    }
+}
+
+// Função para exibir o saldo atual
+void exibirSaldo(Conta *conta) {
+    printf("Saldo atual: %.2f\n", conta->saldo);
+}
+
+// Operações Bancárias
+int main() {
+    Conta corrente;
+    Conta poupanca;
+
+    // Inicializando as contas com saldos iniciais
+    inicializarConta(&corrente, 1000);
+    inicializarConta(&poupanca, 500);
+
+    // Exibindo os saldos iniciais
+    printf("Saldo inicial da Conta Corrente: %.2f\n", corrente.saldo);
+    printf("Saldo inicial da Conta Poupança: %.2f\n", poupanca.saldo);
+
+    // Tentativa de saque em Conta Corrente
+    printf("\nTentativa de saque de 1200 na Conta Corrente:\n");
+    sacar(&corrente, 1200); // Deve exibir mensagem de saldo insuficiente
+    exibirSaldo(&corrente);
+
+    // Saque bem-sucedido na Conta Poupança
+    printf("\nTentativa de saque de 300 na Conta Poupança:\n");
+    sacar(&poupanca, 300); // Saque bem-sucedido
+    exibirSaldo(&poupanca);
+
+    return 0;
+}
